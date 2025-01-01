@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import SearchBar from '../../components/SearchBar';
-import SearchResults from '../../components/SearchResults';
+import SearchBar from '@/components/SearchBar';  // Updated import path
+import SearchResults from '@/components/SearchResults';  // Updated import path
 
 // Define the SearchResult type
 export interface SearchResult {
