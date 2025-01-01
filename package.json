@@ -2,7 +2,7 @@
   "name": "it-solutions",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "npm@9.6.7",  // Changed from "npm@9.x" to exact version
+  "packageManager": "npm@9.6.7",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
