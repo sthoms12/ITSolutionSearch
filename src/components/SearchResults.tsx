@@ -1,16 +1,13 @@
 'use client';
 
-import { Code, Clock, ThumbsUp } from 'lucide-react';
+import { Code, Clock } from 'lucide-react';
+import { SearchResult } from '../app/page';
 
-type SearchResult = {
-  title: string;
-  url: string;
-  snippet: string;
-  published_date?: string;
-  source?: string;
-};
+interface SearchResultsProps {
+  results: SearchResult[];
+}
 
-export default function SearchResults({ results }: { results: SearchResult[] }) {
+export default function SearchResults({ results }: SearchResultsProps) {
   if (results.length === 0) {
     return null;
   }
@@ -25,10 +22,10 @@ export default function SearchResults({ results }: { results: SearchResult[] }) 
                 {result.title}
               </h2>
               <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
-                {result.published_date && (
+                {result.timestamp && (
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
-                    {new Date(result.published_date).toLocaleDateString()}
+                    {result.timestamp}
                   </span>
                 )}
                 {result.source && <span>{result.source}</span>}
