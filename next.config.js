@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  // Remove the experimental section
+  output: 'export',  // Add this line for static export
+  images: {
+    unoptimized: true,  // Required for static export
+  },
 }
 
 module.exports = nextConfig
