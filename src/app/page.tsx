@@ -1,11 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import SearchBar from '@/components/SearchBar';
-import SearchResults from '@/components/SearchResults';
+import SearchBar from '../../components/SearchBar';
+import SearchResults from '../../components/SearchResults';
+
+// Define the SearchResult type
+export interface SearchResult {
+  title: string;
+  url: string;
+  snippet: string;
+  source?: string;
+  timestamp?: string;
+}
 
 export default function Home() {
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+
+  const handleSearch = (results: SearchResult[]) => {
+    setSearchResults(results);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -18,7 +31,7 @@ export default function Home() {
 
       <main className="max-w-5xl mx-auto px-6 py-8">
         <div className="space-y-6">
-          <SearchBar onSearch={setSearchResults} />
+          <SearchBar onSearch={handleSearch} />
           <SearchResults results={searchResults} />
         </div>
       </main>
