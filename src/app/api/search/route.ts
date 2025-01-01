@@ -1,11 +1,6 @@
-export async function POST(request: Request) {
-  if (!process.env.TAVILY_API_KEY) {
-    return Response.json(
-      { error: 'Tavily API key not configured' },
-      { status: 500 }
-    );
-  }
+export const runtime = 'edge';
 
+export async function POST(request: Request) {
   try {
     const { query } = await request.json();
     
@@ -28,17 +23,13 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      throw new Error(`Tavily API error: ${response.statusText}`);
+      throw new Error('Search failed');
     }
 
     const data = await response.json();
-    console.log('Tavily API response:', data); // Debug log
     return Response.json(data);
   } catch (error) {
     console.error('Search error:', error);
-    return Response.json(
-      { error: 'Search failed' },
-      { status: 500 }
-    );
+    return Response.json({ error: 'Search failed' }, { status: 500 });
   }
 }
